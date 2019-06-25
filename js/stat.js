@@ -63,5 +63,4 @@ window.renderStatistics = function (ctx, names, times) {
   renderText(ctx, 'Ура вы победили!', CLOUD_X + GAP_X, CLOUD_Y + GAP_Y * 2);
   renderText(ctx, 'Список результатов:', CLOUD_X + GAP_X, CLOUD_Y + GAP_Y * 3);
   renderHistogram(ctx, names, times);
-
 };
