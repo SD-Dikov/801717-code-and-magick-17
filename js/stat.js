@@ -23,7 +23,7 @@ var renderText = function (ctx, text, x, y) {
   ctx.fillText(text, x, y);
 };
 
-var getRandomPercent = function (min, max) {
+var getRandomNumber = function (min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 };
 
@@ -46,7 +46,7 @@ var renderHistogram = function (ctx, names, times) {
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
-      ctx.fillStyle = 'hsl(240, ' + (getRandomPercent(20, 100)) + '%, 50%)';
+      ctx.fillStyle = 'hsl(240, ' + (getRandomNumber(20, 100)) + '%, 50%)';
     }
     if (histogramHeight < HISTOGRAM_HEIGHT_MIN) {
       histogramHeight = HISTOGRAM_HEIGHT_MIN;
