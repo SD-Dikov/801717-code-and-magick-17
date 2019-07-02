@@ -7,15 +7,17 @@ var firstNameList = ['Иван', 'Хуан Себастьян', 'Мария', '�
 var lastNameList = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var coatColorList = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var eyesColorList = ['black', 'red', 'blue', 'yellow', 'green'];
+var wizardListLenght = 4; // длинна массива в задании
+var randomInteger = function (min, max) {
+  return Math.floor(min + Math.random() * (max + 1 - min));
+}; // функция получения случайного числа в диапазоне
 
-setupBlock.classList.remove('hidden');
+setupBlock.classList.remove('hidden'); // "открытие" блока с настройками
 
-var getDataArray = function (firstNameArr, secondNameArr, firstColorArr, secondColorArr) {
+var getDataArray = function (firstNameArr, secondNameArr, firstColorArr, secondColorArr, arrLenght) { // функция генерирующая JS объекты, которые описывают похожих персонажей
   var dataArray = [];
-  var randomInteger = function (min, max) {
-    return Math.floor(min + Math.random() * (max + 1 - min));
-  };
-  for (var i = 0; i < 4; i++) {
+
+  for (var i = 0; i < arrLenght; i++) { // исправил 4ку в условии выхода на переменную для дополнительной универсальности функции
     dataArray.push({
       name: firstNameArr[randomInteger(0, firstNameArr.length - 1)] + ' ' + secondNameArr[randomInteger(0, secondNameArr.length - 1)],
       coatColor: firstColorArr[randomInteger(0, firstColorArr.length - 1)],
@@ -25,9 +27,9 @@ var getDataArray = function (firstNameArr, secondNameArr, firstColorArr, secondC
   return dataArray;
 };
 
-var wizardDataArray = getDataArray(firstNameList, lastNameList, coatColorList, eyesColorList);
+var wizardDataArray = getDataArray(firstNameList, lastNameList, coatColorList, eyesColorList, wizardListLenght);
 
-var getWizardElement = function (dataArray) {
+var getWizardElement = function (dataArray) { // функция создающая елемент по шаблону, и наполняющая его данными
   var wizardTamplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
   var wizardElement = wizardTamplate.cloneNode(true);
   wizardElement.querySelector('.setup-similar-label').textContent = dataArray.name;
@@ -36,7 +38,7 @@ var getWizardElement = function (dataArray) {
   return wizardElement;
 };
 
-var getFragment = function (dataArray) {
+var getFragment = function (dataArray) { // функция создающая фрагмент, и наполняющая его элементами
   var fragment = document.createDocumentFragment();
   for (var i = 0; i < dataArray.length; i++) {
     fragment.appendChild(getWizardElement(dataArray[i]));
@@ -44,6 +46,6 @@ var getFragment = function (dataArray) {
   return fragment;
 };
 
-wizardList.appendChild(getFragment(wizardDataArray));
+wizardList.appendChild(getFragment(wizardDataArray)); // добавление фрагмента в разметку
 
-setupSimilar.classList.remove('hidden');
+setupSimilar.classList.remove('hidden'); // "открытие" блока с персонажами
