@@ -2,7 +2,6 @@
 
 var setupBlock = document.querySelector('.setup');
 var dialogHandler = document.querySelector('.upload');
-var setupArtifactsShop = document.querySelector('.setup-artifacts-shop');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setupBlock.querySelector('.setup-close');
 var setupUserName = document.querySelector('.setup-user-name');
@@ -88,42 +87,4 @@ dialogHandler.addEventListener('mousedown', function (evt) {
 
   document.addEventListener('mousemove', onMouseMove);
   document.addEventListener('mouseup', onMouseUp);
-});
-
-
-
-
-setupArtifactsShop.addEventListener('mousedown', function (evt) {
-  evt.preventDefault();
-
-  var element = evt.target.closest('img');
-
-  element.style.position = 'absolute';
-
-  var start1Coords = {
-    x: evt.clientX,
-    y: evt.clientY
-  };
-
-  var onMouseMove = function (moveEvt) {
-    moveEvt.preventDefault();
-    if (element) {
-
-      var shift = {
-        x: start1Coords.x - moveEvt.clientX,
-        y: start1Coords.y - moveEvt.clientY
-      };
-
-      start1Coords = {
-        x: moveEvt.clientX,
-        y: moveEvt.clientY
-      };
-
-      element.style.top = (setupBlock.offsetTop - shift.y) + 'px';
-      element.style.left = (setupBlock.offsetLeft - shift.x) + 'px';
-    }
-  };
-
-  document.addEventListener('mousemove', onMouseMove);
-  // document.addEventListener('mouseup', onMouseUp);
 });
