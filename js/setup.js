@@ -1,9 +1,6 @@
 'use strict';
 
 var setupBlock = document.querySelector('.setup');
-var setupOpen = document.querySelector('.setup-open');
-var setupClose = setupBlock.querySelector('.setup-close');
-var setupUserName = document.querySelector('.setup-user-name');
 var wizardList = document.querySelector('.setup-similar-list');
 var setupSimilar = document.querySelector('.setup-similar');
 var setupWizard = document.querySelector('.setup-wizard');
@@ -24,37 +21,6 @@ var randomInteger = function (min, max) {
   return Math.floor(min + Math.random() * (max + 1 - min));
 }; // функция получения случайного числа в диапазоне
 
-var setupBlockOpen = function () {
-  setupBlock.classList.remove('hidden'); // открытие блока с настройками
-};
-var setupBlocClose = function () {
-  setupBlock.classList.add('hidden'); // открытие блока с настройками
-};
-
-setupOpen.addEventListener('click', function () { // открытие блока кликом
-  setupBlockOpen();
-});
-setupOpen.addEventListener('keydown', function (evt) { // открытие блока клавиатурой при фокусе на иконке
-  if (evt.keyCode === 13) {
-    setupBlockOpen();
-  }
-});
-
-setupClose.addEventListener('click', function () { // закрытие блока кликом
-  setupBlocClose();
-});
-document.addEventListener('keydown', function (evt) { // закрытие блока "Esc"
-  if (evt.keyCode === 27) {
-    if (setupUserName !== document.activeElement) { // отсутствие возможности закрыть блок пр фокусе на поле ввода имени
-      setupBlocClose();
-    }
-  }
-});
-setupClose.addEventListener('keydown', function (evt) { // закрытие блока клавиатурой при фокусе на кнопке "крестик"
-  if (evt.keyCode === 13) {
-    setupBlocClose();
-  }
-});
 
 wizardCoat.addEventListener('click', function () { // изменение цвета и внесение его в значение скрытого поля по клику
   var randomCoatColor = coatColorList[randomInteger(0, coatColorList.length - 1)];
